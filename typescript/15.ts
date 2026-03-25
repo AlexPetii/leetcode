@@ -20,8 +20,11 @@ function threeSum(nums: number[]): number[][] {
   return Array.from(res).map((str) => str.split(",").map(Number));
 }
 
-console.log("1",
-  threeSum([-1, 0, 1, 2, -1, -4]),"\n2",
-  threeSum([0, 1, 1]),"\n3",
+console.log(
+  "1",
+  threeSum([-1, 0, 1, 2, -1, -4]),
+  "\n2",
+  threeSum([0, 1, 1]),
+  "\n3",
   threeSum([0, 0, 0])
 );
