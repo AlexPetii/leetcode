@@ -1,35 +1,45 @@
 function spiralOrder(matrix: number[][]): number[] {
-    if (matrix.length === 0 || matrix[0].length === 0) {
-        return [];
-    }
+  let res = [];
+  let top = 0;
+  let bottom = matrix.length - 1;
+  let left = 0;
+  let right = matrix[0].length - 1;
 
-    let left: number = 0;
-    let top: number = 0;
-    let right: number = matrix[0].length;
-    let bottom: number = matrix.length;
-    let ans: number[] = [];
-
-    while (!isComplete()) {
-        for (let i = left; i < right && !isComplete(); i++) {
-            ans.push(matrix[top][i])
-        }
-        top++;
-        for (let i = top; i < bottom && !isComplete(); i++) {
-            ans.push(matrix[i][right - 1])
-        }
-        right--;
-        for (let i = right - 1; i >= left && !isComplete(); i--) {
-            ans.push(matrix[bottom - 1][i])
-        }
-        bottom--;
-        for (let i = bottom - 1; i >= top && !isComplete(); i--) {
-            ans.push(matrix[i][left])
-        }
-        left++;
+  while (top <= bottom && left <= right) {
+    for (let j = left; j <= right; j++) {
+      res.push(matrix[top][j]);
     }
-
-    function isComplete(): boolean {
-        return ans.length === matrix.length * matrix[0].length
+    top++;
+    for (let i = top; i <= bottom; i++) {
+      res.push(matrix[i][right]);
     }
-    return ans
-};
+    right--;
+    if (top <= bottom) {
+      for (let j = right; j >= left; j--) {
+        res.push(matrix[bottom][j]);
+      }
+      bottom--;
+    }
+    if (left <= right) {
+      for (let i = bottom; i >= top; i--) {
+        res.push(matrix[i][left]);
+      }
+      left++;
+    }
+  }
+  return res;
+}
+
+console.log(
+  spiralOrder([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]),
+  spiralOrder([
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+  ]),
+  spiralOrder([[1, 2, 3, 4]]),
+);
