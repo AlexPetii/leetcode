@@ -1,14 +1,11 @@
-function twoSum(nums: number[], target: number): number[] {
-    const elementExist = new Map<number, number>();
-    for (let i = 0; i < nums.length; ++i) {
-        const curr = nums[i];
-        const pair = elementExist.get(target - curr);
-        if (pair !== undefined) {
-            return [pair, i];
-        }
-        if (!elementExist.get(curr)) {
-            elementExist.set(curr, i);
-        }
+function twoSum(nums: number[], target: number) {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j <= nums.length; j++) {
+      if (nums[i] + nums[j] === target) {
+        return [i, j];
+      }
     }
-    return [NaN, NaN];
-};
+  }
+}
+
+console.log(twoSum([2, 7, 11, 15], 9), twoSum([3, 2, 4], 6),twoSum([-1,-2,-3,-4,-5], -8), twoSum([0,4,3,0], 0));
